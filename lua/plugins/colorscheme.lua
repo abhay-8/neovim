@@ -22,9 +22,8 @@ return {
         integrations = {
           cmp = true,
           gitsigns = true,
-          neo_tree = true,
+          fzf = true,
           treesitter = true,
-          telescope = true,
           which_key = true,
           native_lsp = {
             enabled = true,

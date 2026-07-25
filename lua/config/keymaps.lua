@@ -2,6 +2,15 @@
 -- YOUR CUSTOM KEYMAPS
 -- =========================
 
+-- ABSOLUTE OVERRIDE: Force <leader>e to open Oil and profile its load time
+vim.keymap.set("n", "<leader>e", function()
+  local start_time = vim.uv.hrtime()
+  vim.cmd("Oil --float")
+  local end_time = vim.uv.hrtime()
+  local elapsed_ms = (end_time - start_time) / 1000000
+  vim.notify(string.format("Oil loaded in %.2f ms", elapsed_ms), vim.log.levels.INFO)
+end, { noremap = true, silent = true, desc = "Open Oil (Profiled)" })
+
 -- Match SHORTCUTS.md: LazyVim’s default live grep is `<leader>sg` / `<leader>/` (fzf extra),
 -- not `fw`, so this binding was never set by LazyVim.
 vim.keymap.set("n", "<leader>fw", LazyVim.pick("live_grep"), { desc = "Live grep (root dir)" })

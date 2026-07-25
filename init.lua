@@ -138,7 +138,8 @@ vim.api.nvim_create_autocmd("VimEnter", {
 vim.api.nvim_create_autocmd("BufReadPost", {
   callback = function()
     local file = vim.api.nvim_buf_get_name(0)
-    if file ~= "" and vim.fn.filereadable(file) == 0 then
+    -- Ignore oil, terminal, and other special buffers that use protocols (://)
+    if file ~= "" and not file:match("^%a+://") and vim.fn.filereadable(file) == 0 then
       vim.cmd("bdelete!")
     end
   end,

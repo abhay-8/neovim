@@ -2,17 +2,65 @@
 
 ## General
 
-
 | Key         | Action                     |
 | ----------- | -------------------------- |
-| `e`         | Toggle Neo-tree Explorer   |
-| `<leader>e` | Neo-tree filesystem toggle |
+| `<leader>e` | Open Oil (File Explorer)   |
 | `<leader>w` | Cycle windows              |
 | `ad`        | Open dashboard (Alpha)     |
 
+## ⚡ Harpoon 2 (Microservice Teleportation)
+
+| Key         | Action                          |
+| ----------- | ------------------------------- |
+| `<leader>a` | Bookmark current file           |
+| `<leader>h` | Toggle Harpoon quick menu       |
+| `<C-1>`     | Instant teleport to File 1      |
+| `<C-2>`     | Instant teleport to File 2      |
+| `<C-3>`     | Instant teleport to File 3      |
+| `<C-4>`     | Instant teleport to File 4      |
+
+## 🛠️ Automated Refactoring (Fowler-Style)
+
+| Key          | Action                                     |
+| ------------ | ------------------------------------------ |
+| `<leader>re` | Extract Function (Visual Mode)             |
+| `<leader>rv` | Extract Variable (Visual Mode)             |
+| `<leader>ri` | Inline Variable (Normal & Visual)          |
+| `<leader>rB` | Extract Block (Normal Mode)                |
+
+## 🏃 Overseer (Task Runner & Builds)
+
+| Key          | Action                                     |
+| ------------ | ------------------------------------------ |
+| `<leader>ow` | Toggle Task Runner window                  |
+| `<leader>or` | Run a Build / Task                         |
+| `<leader>ol` | Rerun last command                         |
+| `<leader>oc` | Close Overseer                             |
+
+## 📝 Neogen (Documentation Generator)
+
+| Key          | Action                                     |
+| ------------ | ------------------------------------------ |
+| `<leader>nf` | Auto-generate Function Javadoc / Doxygen   |
+| `<leader>nc` | Auto-generate Class Javadoc / Doxygen      |
+
+## 📌 Sticky Headers & UI
+
+| Key          | Action                                     |
+| ------------ | ------------------------------------------ |
+| `<leader>tc` | Toggle Sticky Method/Class Header          |
+
+## 🪄 Mini.surround & Mini.ai Cheatsheet
+
+| Key          | Action                                     |
+| ------------ | ------------------------------------------ |
+| `cs"'`       | Change surrounding double quote to single  |
+| `cs]{`       | Change square brackets to curly brackets   |
+| `saiw)`      | Surround inner word with parenthesis       |
+| `daf`        | Delete around entire function block        |
+| `ciq`        | Change inside quote                        |
 
 ## Cursor CLI (Cursor Agent)
-
 
 | Key          | Action                                    |
 | ------------ | ----------------------------------------- |
@@ -23,9 +71,7 @@
 | `<leader>c>` | Increase Cursor Agent panel width         |
 | `<leader>c<` | Decrease Cursor Agent panel width         |
 
-
-## Find / Telescope
-
+## Find / Fzf-lua
 
 | Key          | Action                      |
 | ------------ | --------------------------- |
@@ -41,18 +87,14 @@
 | `<leader>fs` | LSP: document symbols       |
 | `<leader>fp` | Find projects (normal mode) |
 
-
 ## Search / Yank
-
 
 | Key          | Action                       |
 | ------------ | ---------------------------- |
 | `<leader>sg` | Live grep using yanked text  |
 | `<leader>/`  | Search (/) using yanked text |
 
-
 ## LSP (when attached)
-
 
 | Key          | Action                                         |
 | ------------ | ---------------------------------------------- |
@@ -64,26 +106,34 @@
 | `<leader>gd` | Go to definition (fallback without LSP)        |
 | `<leader>gf` | Go to file under cursor (fallback without LSP) |
 
+## Debugging (DAP) - Java & C++
 
-## Files under cursor
+| Key          | Action                                         |
+| ------------ | ---------------------------------------------- |
+| `<leader>db` | Toggle Breakpoint                              |
+| `<leader>dc` | Start Debugging / Continue (Resume)            |
+| `<leader>do` | Step Over                                      |
+| `<leader>di` | Step Into                                      |
+| `<leader>du` | Toggle Debug UI (Variables, Watches, Stack)    |
+| `<leader>de` | Evaluate expression under cursor               |
 
+## Testing (Neotest)
 
-| Key         | Action                                           |
-| ----------- | ------------------------------------------------ |
-| `<leader>d` | Open file under cursor (gf + Telescope fallback) |
-
+| Key          | Action                                         |
+| ------------ | ---------------------------------------------- |
+| `<leader>tr` | Run nearest test                               |
+| `<leader>tf` | Run all tests in current file                  |
+| `<leader>td` | Debug nearest test (Starts DAP)                |
+| `<leader>ts` | Toggle Test Summary Panel                      |
 
 ## Formatting
-
 
 | Key          | Action                                       |
 | ------------ | -------------------------------------------- |
 | `<leader>fP` | Format entire file with Prettier             |
 | `<leader>fp` | Format selection with Prettier (visual mode) |
 
-
 ## Git
-
 
 | Key          | Action        |
 | ------------ | ------------- |
@@ -93,9 +143,7 @@
 | `<leader>gs` | Stage hunk    |
 | `<C-h>`      | Next git hunk |
 
-
 ## Sessions
-
 
 | Key          | Action          |
 | ------------ | --------------- |
@@ -103,23 +151,19 @@
 | `<leader>sl` | Restore session |
 | `<leader>sd` | Delete session  |
 
-
 ## Folds (UFO)
-
 
 | Key  | Action          |
 | ---- | --------------- |
 | `zR` | Open all folds  |
 | `zM` | Close all folds |
 
-
-## Telescope picker (inside)
-
+## Fzf-lua picker (inside)
 
 | Key               | Action                          |
 | ----------------- | ------------------------------- |
 | `<C-j>` / `<C-k>` | Move selection                  |
 | `<C-y>`           | Copy selected path to clipboard |
-| `<C-p>`           | Paste yank into prompt          |
-
-
+| `Ctrl+s`          | Open in vertical split          |
+| `Ctrl+v`          | Open in horizontal split        |
+| `Ctrl+t`          | Open in new tab                 |

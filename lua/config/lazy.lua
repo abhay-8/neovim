@@ -27,6 +27,12 @@ require("lazy").setup({
     -- LazyVim core
     { "LazyVim/LazyVim", import = "lazyvim.plugins" },
 
+    -- Extras for IntelliJ-like Java and Debugging (DAP)
+    { import = "lazyvim.plugins.extras.dap.core" },
+    { import = "lazyvim.plugins.extras.lang.java" },
+    { import = "lazyvim.plugins.extras.lang.clangd" },
+    { import = "lazyvim.plugins.extras.test.core" },
+
     -- your plugins
     { import = "plugins" },
 

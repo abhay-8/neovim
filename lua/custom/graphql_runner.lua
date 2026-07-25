@@ -1,11 +1,7 @@
 local M = {}
 
 local session = require("custom.session")
-local pickers = require("telescope.pickers")
-local finders = require("telescope.finders")
-local conf = require("telescope.config").values
-local actions = require("telescope.actions")
-local action_state = require("telescope.actions.state")
+
 
 --------------------------------------------------
 -- Config
@@ -245,69 +241,32 @@ local function telescope_multi_select(
   format_fn,
   callback
 )
-  pickers
-    .new({}, {
-      prompt_title = title,
+  local fzf_items = {}
+  local item_map = {}
+  
+  for _, item in ipairs(items) do
+    local display = format_fn and format_fn(item) or item.name
+    table.insert(fzf_items, display)
+    item_map[display] = item
+  end
 
-      finder = finders.new_table({
-        results = items,
-
-        entry_maker = function(item)
-          local display = format_fn
-            and format_fn(item)
-            or item.name
-
-          return {
-            value = item,
-            display = display,
-            ordinal = item.name,
-          }
-        end,
-      }),
-
-      sorter = conf.generic_sorter({}),
-
-      attach_mappings = function(
-        prompt_bufnr,
-        map
-      )
-        map("i", "<Tab>", actions.toggle_selection + actions.move_selection_worse)
-        map("n", "<Tab>", actions.toggle_selection + actions.move_selection_worse)
-
-        actions.select_default:replace(function()
-          local picker =
-            action_state.get_current_picker(
-              prompt_bufnr
-            )
-
-          local selections =
-            picker:get_multi_selection()
-
-          if #selections == 0 then
-            local current =
-              action_state.get_selected_entry()
-
-            if current then
-              selections = { current }
-            end
-          end
-
-          actions.close(prompt_bufnr)
-
-          local result = {}
-
-          for _, entry in ipairs(selections) do
-            table.insert(result, entry.value)
-          end
-
-          callback(result)
-        end)
-
-        return true
+  require("fzf-lua").fzf_exec(fzf_items, {
+    prompt = title .. "> ",
+    fzf_opts = {
+      ["--multi"] = true,
+    },
+    actions = {
+      ["default"] = function(selected)
+        local result = {}
+        for _, display in ipairs(selected) do
+          table.insert(result, item_map[display])
+        end
+        callback(result)
       end,
-    })
-    :find()
+    },
+  })
 end
+
 
 --------------------------------------------------
 -- Recursive field picker
@@ -775,40 +734,24 @@ end
 --------------------------------------------------
 
 local function pick_operation(operations, callback)
-  pickers
-    .new({}, {
-      prompt_title = "GraphQL Operations",
+  local fzf_items = {}
+  local item_map = {}
+  
+  for _, item in ipairs(operations) do
+    table.insert(fzf_items, item.label)
+    item_map[item.label] = item
+  end
 
-      finder = finders.new_table({
-        results = operations,
-
-        entry_maker = function(item)
-          return {
-            value = item,
-            display = item.label,
-            ordinal = item.label,
-          }
-        end,
-      }),
-
-      sorter = conf.generic_sorter({}),
-
-      attach_mappings = function(prompt_bufnr)
-        actions.select_default:replace(function()
-          local entry =
-            action_state.get_selected_entry()
-
-          actions.close(prompt_bufnr)
-
-          if entry then
-            callback(entry.value)
-          end
-        end)
-
-        return true
+  require("fzf-lua").fzf_exec(fzf_items, {
+    prompt = "GraphQL Operations> ",
+    actions = {
+      ["default"] = function(selected)
+        if selected and #selected > 0 then
+          callback(item_map[selected[1]])
+        end
       end,
-    })
-    :find()
+    },
+  })
 end
 
 --------------------------------------------------

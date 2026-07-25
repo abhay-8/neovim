@@ -23,12 +23,7 @@ function M.get_repos()
 end
 
 function M.open()
-  local pickers = require("telescope.pickers")
-  local finders = require("telescope.finders")
-  local conf = require("telescope.config").values
-  local actions = require("telescope.actions")
-  local action_state = require("telescope.actions.state")
-
+  local fzf = require("fzf-lua")
   local repos = M.get_repos()
 
   if #repos == 0 then
@@ -36,26 +31,22 @@ function M.open()
     return
   end
 
-  pickers.new({}, {
-    prompt_title = "Switch Repository",
-    finder = finders.new_table({
-      results = repos,
-      entry_maker = function(repo)
-        return {
-          value = repo,
-          display = repo.name,
-          ordinal = repo.name,
-        }
-      end,
-    }),
-    sorter = conf.generic_sorter({}),
-    attach_mappings = function(prompt_bufnr, _)
-      actions.select_default:replace(function()
-        local selection = action_state.get_selected_entry()
-        actions.close(prompt_bufnr)
+  local fzf_items = {}
+  local repo_map = {}
+  for _, repo in ipairs(repos) do
+    table.insert(fzf_items, repo.name)
+    repo_map[repo.name] = repo
+  end
 
+  fzf.fzf_exec(fzf_items, {
+    prompt = "Switch Repository> ",
+    actions = {
+      ["default"] = function(selected)
+        if not selected or #selected == 0 then return end
+        local selection = repo_map[selected[1]]
+        
         -- Change directory to the selected repo
-        vim.cmd("cd " .. vim.fn.fnameescape(selection.value.path))
+        vim.cmd("cd " .. vim.fn.fnameescape(selection.path))
 
         -- Close any floating windows (e.g., snacks-explorer)
         for _, win in ipairs(vim.api.nvim_list_wins()) do
@@ -64,14 +55,13 @@ function M.open()
           end
         end
 
-        -- Open Neo-tree for the new directory
-        vim.cmd("Neotree filesystem reveal")
+        -- Open Oil for the new directory
+        require("oil").open(selection.path)
 
-        vim.notify("Switched to " .. selection.value.name)
-      end)
-      return true
-    end,
-  }):find()
+        vim.notify("Switched to " .. selection.name)
+      end,
+    },
+  })
 end
 
 return M

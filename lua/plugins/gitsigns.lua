@@ -54,11 +54,11 @@ return {
     -- 🔍 File / repo history
     ----------------------------------------------------------------
     vim.keymap.set("n", "<leader>gf", function()
-      require("telescope.builtin").git_commits()
+      require("fzf-lua").git_commits()
     end, { desc = "Git commits (repo)" })
 
     vim.keymap.set("n", "<leader>gF", function()
-      require("telescope.builtin").git_bcommits()
+      require("fzf-lua").git_bcommits()
     end, { desc = "Git commits (file)" })
 
     ----------------------------------------------------------------
