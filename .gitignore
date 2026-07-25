@@ -1,0 +1,9 @@
+# Build and Error Logs
+*.log
+build_errors.log
+
+# All dot files and local session state (e.g. .nvim-session, .gitattributes, .netrwhist, .cache, etc.)
+.*
+
+# Allow tracking .gitignore itself so this rule is saved in the repository
+!.gitignore
