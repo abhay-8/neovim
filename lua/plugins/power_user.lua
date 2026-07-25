@@ -14,11 +14,11 @@ return {
       vim.keymap.set("n", "<leader>a", function() harpoon:list():add() end, { desc = "Harpoon: Add File" })
       vim.keymap.set("n", "<leader>h", function() harpoon.ui:toggle_quick_menu(harpoon:list()) end, { desc = "Harpoon: Quick Menu" })
 
-      -- Instant Teleportation (Ctrl + 1/2/3/4)
-      vim.keymap.set("n", "<C-1>", function() harpoon:list():select(1) end, { desc = "Harpoon: Teleport to File 1" })
-      vim.keymap.set("n", "<C-2>", function() harpoon:list():select(2) end, { desc = "Harpoon: Teleport to File 2" })
-      vim.keymap.set("n", "<C-3>", function() harpoon:list():select(3) end, { desc = "Harpoon: Teleport to File 3" })
-      vim.keymap.set("n", "<C-4>", function() harpoon:list():select(4) end, { desc = "Harpoon: Teleport to File 4" })
+      -- Instant Teleportation (<leader> + 1/2/3/4)
+      vim.keymap.set("n", "<leader>1", function() harpoon:list():select(1) end, { desc = "Harpoon: Teleport to File 1" })
+      vim.keymap.set("n", "<leader>2", function() harpoon:list():select(2) end, { desc = "Harpoon: Teleport to File 2" })
+      vim.keymap.set("n", "<leader>3", function() harpoon:list():select(3) end, { desc = "Harpoon: Teleport to File 3" })
+      vim.keymap.set("n", "<leader>4", function() harpoon:list():select(4) end, { desc = "Harpoon: Teleport to File 4" })
     end,
   },
 
@@ -118,7 +118,7 @@ return {
   -- 6. MINI.SURROUND & MINI.AI (Supercharged Vim Text Objects)
   -- ==========================================================
   {
-    "echasnovski/mini.surround",
+    "nvim-mini/mini.surround",
     version = false,
     config = function()
       require("mini.surround").setup({
@@ -130,7 +130,7 @@ return {
     end,
   },
   {
-    "echasnovski/mini.ai",
+    "nvim-mini/mini.ai",
     version = false,
     config = function()
       require("mini.ai").setup({

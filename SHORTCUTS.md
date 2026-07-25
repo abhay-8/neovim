@@ -14,10 +14,10 @@
 | ----------- | ------------------------------- |
 | `<leader>a` | Bookmark current file           |
 | `<leader>h` | Toggle Harpoon quick menu       |
-| `<C-1>`     | Instant teleport to File 1      |
-| `<C-2>`     | Instant teleport to File 2      |
-| `<C-3>`     | Instant teleport to File 3      |
-| `<C-4>`     | Instant teleport to File 4      |
+| `<leader>1` | Instant teleport to File 1      |
+| `<leader>2` | Instant teleport to File 2      |
+| `<leader>3` | Instant teleport to File 3      |
+| `<leader>4` | Instant teleport to File 4      |
 
 ## 🛠️ Automated Refactoring (Fowler-Style)
 
