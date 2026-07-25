@@ -60,17 +60,6 @@
 | `daf`        | Delete around entire function block        |
 | `ciq`        | Change inside quote                        |
 
-## Cursor CLI (Cursor Agent)
-
-| Key          | Action                                    |
-| ------------ | ----------------------------------------- |
-| `<leader>co` | Toggle Cursor Agent terminal              |
-| `<leader>cf` | Focus Cursor Agent terminal               |
-| `<leader>cp` | Prompt-and-send to agent                  |
-| `<leader>cs` | Send buffer (normal) / selection (visual) |
-| `<leader>c>` | Increase Cursor Agent panel width         |
-| `<leader>c<` | Decrease Cursor Agent panel width         |
-
 ## Find / Fzf-lua
 
 | Key          | Action                      |
@@ -162,8 +151,10 @@
 
 | Key               | Action                          |
 | ----------------- | ------------------------------- |
-| `<C-j>` / `<C-k>` | Move selection                  |
-| `<C-y>`           | Copy selected path to clipboard |
-| `Ctrl+s`          | Open in vertical split          |
-| `Ctrl+v`          | Open in horizontal split        |
-| `Ctrl+t`          | Open in new tab                 |
+| `<C-j>` / `<C-k>`   | Move selection                  |
+| `<C-y>`             | Copy selected path to clipboard |
+| `F7` (or `Ctrl+s`)  | Open in horizontal split        |
+| `F8` (or `Ctrl+v`)  | Open in vertical split          |
+| `F9` (or `Ctrl+t`)  | Open in new tab                 |
+| `F2`                | Toggle Fullscreen Fzf-lua panel |
+| `F4`                | Toggle File Preview panel       |

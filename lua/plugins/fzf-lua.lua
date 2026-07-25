@@ -4,6 +4,32 @@ return {
   config = function()
     local fzf = require("fzf-lua")
 
+    local split_actions = {
+      ["default"] = fzf.actions.file_edit,
+      -- Function Keys (F7, F8, F9) - Bypasses Fzf-lua's builtin UI toggles (F1-F6)!
+      ["f7"]      = fzf.actions.file_split,
+      ["f8"]      = fzf.actions.file_vsplit,
+      ["f9"]      = fzf.actions.file_tabedit,
+      ["ctrl-s"]  = fzf.actions.file_split,
+      ["ctrl-x"]  = fzf.actions.file_split,
+      ["ctrl-v"]  = fzf.actions.file_vsplit,
+      ["ctrl-t"]  = fzf.actions.file_tabedit,
+      -- Alt (Meta) fallbacks for when Windows / Alacritty intercepts Ctrl keys!
+      ["alt-s"]   = fzf.actions.file_split,
+      ["alt-x"]   = fzf.actions.file_split,
+      ["alt-v"]   = fzf.actions.file_vsplit,
+      ["alt-t"]   = fzf.actions.file_tabedit,
+      ["ctrl-y"]  = function(selected, opts)
+        if not selected or #selected == 0 then return end
+        local file = fzf.path.entry_to_file(selected[1], opts)
+        if file and file.path then
+          local rel_path = vim.fn.fnamemodify(file.path, ":.")
+          vim.fn.setreg("+", rel_path)
+          print("Copied: " .. rel_path)
+        end
+      end,
+    }
+
     fzf.setup({
       -- Set fzf-lua to use the default profile (similar to telescope defaults)
       winopts = {
@@ -17,30 +43,11 @@ return {
           ["<C-f>"] = "preview-page-down",
           ["<C-b>"] = "preview-page-up",
         },
-        fzf = {
-          -- VSCode-like split keys
-          ["ctrl-s"] = "split",
-          ["ctrl-v"] = "vsplit",
-          -- yank path mapping is more complex in fzf-lua but we can bind ctrl-y
-        },
       },
       actions = {
-        files = {
-          ["default"] = fzf.actions.file_edit,
-          ["ctrl-s"]  = fzf.actions.file_split,
-          ["ctrl-v"]  = fzf.actions.file_vsplit,
-          ["ctrl-t"]  = fzf.actions.file_tabedit,
-          ["ctrl-y"]  = function(selected, opts)
-            if not selected or #selected == 0 then return end
-            -- The selected entry usually has the file path as the first string or matches a pattern
-            local file = fzf.path.entry_to_file(selected[1], opts)
-            if file and file.path then
-              local rel_path = vim.fn.fnamemodify(file.path, ":.")
-              vim.fn.setreg("+", rel_path)
-              print("Copied: " .. rel_path)
-            end
-          end,
-        },
+        files   = split_actions,
+        grep    = split_actions,
+        buffers = split_actions,
       },
       files = {
         rg_opts = "--color=never --files --hidden --follow -g '!.git' -g '!node_modules/' -g '!vendor/'",
