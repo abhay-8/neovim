@@ -13,6 +13,10 @@ return {
       -- Keymaps
       vim.keymap.set("n", "<leader>a", function() harpoon:list():add() end, { desc = "Harpoon: Add File" })
       vim.keymap.set("n", "<leader>h", function() harpoon.ui:toggle_quick_menu(harpoon:list()) end, { desc = "Harpoon: Quick Menu" })
+      vim.keymap.set("n", "<leader>hc", function()
+        harpoon:list():clear()
+        print("Harpoon bookmarks cleared!")
+      end, { desc = "Harpoon: Clear All Bookmarks" })
 
       -- Instant Teleportation (<leader> + 1/2/3/4)
       vim.keymap.set("n", "<leader>1", function() harpoon:list():select(1) end, { desc = "Harpoon: Teleport to File 1" })

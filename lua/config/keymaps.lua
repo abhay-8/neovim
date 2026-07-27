@@ -135,3 +135,14 @@ vim.keymap.set("n", "<leader>rt", session.set_token, {
 vim.keymap.set("n", "<leader>rg", session.set_graphql_endpoint, {
   desc = "Set GraphQL endpoint",
 })
+
+--------------------------------------------------
+-- Pomodoro Timer & Rest Notifier
+--------------------------------------------------
+local pomodoro = require("custom.pomodoro")
+pomodoro.setup_autotrigger()
+
+vim.keymap.set("n", "<leader>ps", pomodoro.start, { desc = "Pomodoro: Start / Reset Timer (20 mins)" })
+vim.keymap.set("n", "<leader>pt", pomodoro.status, { desc = "Pomodoro: Check Time Remaining" })
+vim.keymap.set("n", "<leader>po", pomodoro.show_notification, { desc = "Pomodoro: Open Rest Window & Art" })
+vim.keymap.set("n", "<leader>pc", pomodoro.stop, { desc = "Pomodoro: Stop / Cancel Timer" })

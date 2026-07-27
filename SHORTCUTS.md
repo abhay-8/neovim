@@ -8,16 +8,47 @@
 | `<leader>w` | Cycle windows              |
 | `ad`        | Open dashboard (Alpha)     |
 
+## 🛢️ Oil File Explorer (when open)
+
+Oil treats your filesystem like a regular text buffer: rename lines to rename files, delete lines to delete files, and type `:w` to save!
+
+| Key         | Action                                         |
+| ----------- | ---------------------------------------------- |
+| `<CR>`      | Open file / Enter directory                    |
+| `-`         | Go up to parent directory                      |
+| `<C-p>`     | Toggle file preview window                     |
+| `<C-s>`     | Open file in vertical split                    |
+| `<C-h>`     | Open file in horizontal split                  |
+| `<C-t>`     | Open file in new tab                           |
+| `g.`        | Toggle hidden files and directories (`.*`)     |
+| `gs`        | Change sort order (name, type, etc.)           |
+| `gx`        | Open file in external system app (e.g. browser)|
+| `g?`        | Show full popup help menu of all Oil commands  |
+| `:w`        | Save buffer to execute file renames/deletes    |
+| `<C-c>`     | Close Oil float window                         |
+
 ## ⚡ Harpoon 2 (Microservice Teleportation)
 
 | Key         | Action                          |
 | ----------- | ------------------------------- |
-| `<leader>a` | Bookmark current file           |
-| `<leader>h` | Toggle Harpoon quick menu       |
-| `<leader>1` | Instant teleport to File 1      |
+| `<leader>a`  | Bookmark current file           |
+| `<leader>h`  | Toggle Harpoon quick menu       |
+| `<leader>hc` | Clear all Harpoon bookmarks     |
+| `<leader>1`  | Instant teleport to File 1      |
 | `<leader>2` | Instant teleport to File 2      |
 | `<leader>3` | Instant teleport to File 3      |
 | `<leader>4` | Instant teleport to File 4      |
+
+## 🧠 Pomodoro Rest Timer & Art
+
+The 20-minute Pomodoro timer **automatically starts on your very first keystroke** in Neovim! Every 20 minutes, a centered floating window appears with abstract digital art to remind you to rest your eyes and reset.
+
+| Key          | Action                                         |
+| ------------ | ---------------------------------------------- |
+| `<leader>ps` | Start / Reset Pomodoro timer (20 minutes)      |
+| `<leader>pt` | Check time remaining until next rest break     |
+| `<leader>po` | Test / Open rest notification & abstract art   |
+| `<leader>pc` | Stop / Cancel Pomodoro timer                   |
 
 ## 🛠️ Automated Refactoring (Fowler-Style)
 
